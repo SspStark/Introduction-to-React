@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--React.js is a JavaScript library, To use React we need to import it using these three scripts and add them in head tag-->
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <!-- This script import a JS Compiler 'babel' that translate JSX into regular JavaScript -->
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <!-- by add these now we can use react in our code-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Using JavaScript -->
+    <script type="text/javascript">
+      const rootElement = document.getElementById("root");
+      const element = document.createElement("h1");
+      element.textContent = "Hello World!";
+      element.classList.add("greeting");
+      rootElement.appendChild(element);
+    </script>
+
+    <!-- To run React we need to assign value 'module' to type attribute -->
+    <script type="module">
+      const elementType = "h1";
+      const elementProps = { className: "greeting", children: "Hello world!" };
+      const element = React.createElement(elementType, elementProps);
+      ReactDOM.render(element, document.getElementById("root"));
+    </script>
+
+    <!-- React introduces JSX which looks like HTML syntax to create React elements,
+    To run JSX we need to assign value 'text/babel' to type attribute -->
+    <script type="text/babel">
+      const element = <h1 className="greeting">Hello world!</h1>;
+      ReactDOM.render(element, document.getElementById("root"));
+    </script>
+    
+    <!--We can embed the variables and expressions using the flower brackets {}-->
+    <script type="text/babel">
+        //Embedding variables in JSX
+        const name = "Rahul";
+        const className = "greeting";
+        const element = <h1 className={className}>Hello {name}!</h1>;
+        ReactDOM.render(element, document.getElementById("root"));
+    </script>
+
+    <!--Embedding Expressions in JSX-->
+    <script type="text/babel">
+        const fullName = (user) => user.firstName + " " + user.lastName;
+        const user = { firstName: "Rahul ", lastName: "Attuluri" };
+        const element = <h1 className="greeting"> Hello, {fullName(user)}!</h1>;
+        ReactDOM.render(element, document.getElementById("root"));
+      </script>
+
+      <!--Nesting JSX elements-->
+      <script type="text/babel">
+        const element = (
+          <div>
+            <h1 className="greeting">Hello!</h1>
+            <p>Good to see you here.</p>
+          </div>
+        );
+        ReactDOM.render(element, document.getElementById("root"));
+      </script>
+  </body>
+</html>
